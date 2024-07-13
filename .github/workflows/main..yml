@@ -16,6 +16,9 @@ jobs:
 #      - name: Run sample script
 #        run: echo "Hello from CI/CD"
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
       - name: Run ktlint
         run: ./gradlew lintDebug
 
