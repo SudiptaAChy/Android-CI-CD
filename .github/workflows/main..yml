@@ -61,7 +61,8 @@ jobs:
 
   instrumentation-test:
 #    needs: [ unit-test ]
-    runs-on: ubuntu-latest
+#    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v4
@@ -75,14 +76,14 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Check connected devices
+        run: adb devices
+
       - name: Run instrumentation test
         uses: ReactiveCircus/android-emulator-runner@v2.32.0
         with:
           api-level: 33
           script: timeout 10m ./gradlew connectedCheck
-
-      - name: Check connected devices
-        run: adb devices
 
       - name: Upload test report
         uses: actions/upload-artifact@v4
