@@ -75,7 +75,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run instrumentation test
-        run: ReactiveCircus/android-emulator-runner@v2.32.0
+        uses: ReactiveCircus/android-emulator-runner@v2.32.0
         with:
           api-level: 29
           script: ./gradlew connectedCheck
