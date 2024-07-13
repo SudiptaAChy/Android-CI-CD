@@ -79,9 +79,7 @@ jobs:
         uses: ReactiveCircus/android-emulator-runner@v2.32.0
         with:
           api-level: 33
-          script: |
-          echo "Running connectedCheck"
-          timeout 10m ./gradlew connectedCheck
+          script: timeout 10m ./gradlew connectedCheck
 
       - name: Check connected devices
         run: adb devices
