@@ -60,7 +60,7 @@ jobs:
 #          path: app/build/reports/tests/testDebugUnitTest
 
   instrumentation-test:
-    needs: [ unit-test ]
+#    needs: [ unit-test ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -79,7 +79,12 @@ jobs:
         uses: ReactiveCircus/android-emulator-runner@v2.32.0
         with:
           api-level: 33
-          script: ./gradlew connectedCheck
+          script: |
+          echo "Running connectedCheck"
+          timeout 10m ./gradlew connectedCheck
+
+      - name: Check connected devices
+        run: adb devices
 
       - name: Upload test report
         uses: actions/upload-artifact@v4
