@@ -60,6 +60,7 @@ jobs:
           path: app/build/reports/tests/testDebugUnitTest
 
   instrumentation-test:
+    needs: [ unit-test ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -88,6 +89,7 @@ jobs:
 
   package:
     name: Generating APK
+    needs: [ instrumentation-test ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -98,6 +100,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
       - name: Build debug apk
         run: ./gradlew assembleDebug --stacktrace
