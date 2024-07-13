@@ -13,5 +13,14 @@ jobs:
       - name: Checkout the latest code
         uses: actions/checkout@v2
 
-      - name: Run sample script
-        run: echo "Hello from CI/CD"
+#      - name: Run sample script
+#        run: echo "Hello from CI/CD"
+
+      - name: Run ktlint
+        run: ./gradlew lintDebug
+
+      - name: Upload HTML test report
+        uses: actions/upload-artifact@v2
+        with:
+          name: lint-report.html
+          path: app/build/reports/lint-results-debug.html
