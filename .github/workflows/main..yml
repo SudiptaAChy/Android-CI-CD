@@ -1,22 +1,4 @@
-#name: Android CI/CD
-#
-#on:
-#  push:
-#    branches: [ master ]
-#  pull_request:
-#    branches: [ master ]
-#
-#jobs:
-#  start:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout the latest code
-#        uses: actions/checkout@v2
-#
-#      - name: Run sample script
-#        uses: echo Hello from CI/CD
-
-name: CI
+name: Android CI/CD
 
 on:
   push:
@@ -28,8 +10,8 @@ jobs:
   start:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the code
+      - name: Checkout the latest code
         uses: actions/checkout@v2
 
       - name: Run sample script
-        uses: echo Hello, world
+        run: echo "Hello from CI/CD"
